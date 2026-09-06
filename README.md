@@ -56,7 +56,7 @@ Keyboard: `Space` = Morse/alarm key · `R` = reset key · `S` = sliding switch �
 
 ## Notes on fidelity · Notas sobre fidelidade
 
-* Circuit topologies follow the schematics in the “Description of circuits” chapter (book pages 62–72). Component values were read from the wiring-card photographs where the book shows them (A1, A5, B3, C1, D1, D4.1, E1); for the other circuits, the values are plausible choices from the kit’s resistor and capacitor set (10 Ω … 680 kΩ; 47 nF, 0.1 µF, 3.2 µF, 10 µF, 100 µF). The potentiometer is modeled as 4.7 kΩ with a switch.
+* Circuit topologies follow the schematics in the “Description of circuits” chapter (book pages 62–72). Component values were read from the wiring-card photographs where the book shows them (A1, A5, B3, C1, D1, D4.1, E1); for the other circuits, the values are plausible choices from the kit’s resistor and capacitor set (47 Ω … 680 kΩ; 47 nF, 0.1 µF, 3.2 µF, 10 µF, 100 µF). The kit's potentiometer is a 10 kΩ logarithmic type with an on/off switch.
 * The simulation is behavioral (RC time constants, LDR resistance versus light, divider thresholds, transistor on/off states), not a SPICE solver. Tones are synthesized with the Web Audio API; loudspeaker and earphone have their own frequency coloring.
 * Transmitters, telephone voices, bird-song and the “friend” are all synthetic; music consists of public-domain melodies.
 
