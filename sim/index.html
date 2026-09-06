@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EE 20 Simulator — Philips Electronic Engineer</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f86d6'/%3E%3Ctext x='4' y='24' font-family='Helvetica' font-weight='900' font-style='italic' font-size='20' fill='%23e2382e'%3EEE%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <header>
+    <div class="logo"><span class="ee">EE</span><span><div class="philips">PHILIPS</div><div class="title" data-t="appTitle"></div></span></div>
+    <div class="sub" data-t="subtitle"></div>
+    <div class="spacer"></div>
+    <a id="lnkHome" class="hlink" data-t="navHome" title="mjrovai.github.io/EE20-Simulator"></a>
+    <a id="lnkBook" class="hlink" data-t="navBook"></a>
+    <a id="lnkZip" class="hlink" data-t="navOffline"></a>
+    <button id="btnAudio" class="ghost"></button>
+    <button id="btnLang"></button>
+  </header>
+
+  <div id="app">
+    <aside id="sidebar"></aside>
+    <main>
+      <div class="circuit-head">
+        <h1><span class="id" id="cid"></span><span id="cname"></span></h1>
+        <span id="cbadge"></span>
+        <span class="pages" id="cpages"></span>
+      </div>
+      <nav class="tabs">
+        <button data-tab="board" data-t="tabBoard"></button>
+        <button data-tab="schem" data-t="tabSchematic"></button>
+        <button data-tab="manual" data-t="tabManual"></button>
+        <button data-tab="parts" data-t="tabParts"></button>
+      </nav>
+      <section id="view">
+        <div class="stage" id="stage-board">
+          <p class="view-hint" data-t="boardHint"></p>
+          <div class="board-wrap">
+            <div class="board-card" id="boardCard"></div>
+            <div class="board-side">
+              <div class="battery" id="bat1"></div>
+              <div class="battery" id="bat2"></div>
+              <div class="grille" id="grille"><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+            <div class="board-strip" id="boardStrip"></div>
+          </div>
+          <div class="faultbar panel" style="margin-top:12px" id="faultbar"></div>
+        </div>
+        <div class="stage" id="stage-schem">
+          <p class="view-hint" data-t="legendSym"></p>
+          <div id="schemBox"></div>
+        </div>
+        <div class="stage" id="stage-manual"><div class="manual" id="manual"></div></div>
+        <div class="stage" id="stage-parts"><div id="partsBox"></div></div>
+      </section>
+      <section id="dock"></section>
+    </main>
+  </div>
+  <footer><span data-t="madeBy"></span><span data-t="keyboardHint"></span></footer>
+  <div id="toast"></div>
+
+  <script src="js/parts.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/schematic.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/circuits.js"></script>
+  <script src="js/models.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

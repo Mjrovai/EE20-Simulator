@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EE 20 Simulator — Philips Electronic Engineer (1966)</title>
+  <meta name="description" content="Play online with the 22 circuits of the Philips Electronic Engineer EE 8 / EE 20 kit (1966). Bilingual EN / PT-BR simulator, offline download and the original instruction book.">
+  <meta property="og:title" content="EE 20 Simulator · Philips Electronic Engineer">
+  <meta property="og:description" content="A realistic, bilingual simulator of the 22 circuits of the 1966 Philips EE 8 / EE 20 all-transistor kit.">
+  <meta property="og:image" content="https://mjrovai.github.io/EE20-Simulator/images/ee20-simulator.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f86d6'/%3E%3Ctext x='4' y='24' font-family='Helvetica' font-weight='900' font-style='italic' font-size='20' fill='%23e2382e'%3EEE%3C/text%3E%3C/svg%3E">
+  <style>
+    :root { --blue:#2f86d6; --blue-d:#1f5f9e; --red:#e2382e; --yellow:#f7e14c; --cream:#f5efe1; --ink:#1f2429; --muted:#6b7078; --line:#d8d2c4; --panel:#fff; color-scheme: light; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { font-family: Georgia, 'Times New Roman', serif; color: var(--ink); background: var(--cream); line-height: 1.5; }
+    h1, h2, h3, .sans { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    a { color: var(--blue-d); }
+    header { background: var(--blue); color: #fff; display: flex; align-items: center; gap: 16px; padding: 8px 18px; box-shadow: 0 2px 0 var(--blue-d); }
+    .logo { display: flex; align-items: baseline; gap: 6px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    .logo .ee { font-size: 34px; font-weight: 900; color: var(--red); line-height: 1; text-shadow: 2px 2px 0 #fff; font-style: italic; }
+    .logo .philips { font-weight: 900; font-size: 15px; letter-spacing: .12em; }
+    .logo .title { font-weight: 700; font-size: 18px; }
+    header .spacer { flex: 1; }
+    header a.gh { color: #fff; font-family: Helvetica, Arial, sans-serif; font-weight: 700; font-size: 13px; text-decoration: none; }
+    header button { background: #fff; color: var(--blue-d); border: 0; border-radius: 4px; padding: 6px 10px; font-weight: 700; font-family: Helvetica, Arial, sans-serif; font-size: 14px; cursor: pointer; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+    .hero { display: grid; grid-template-columns: 300px 1fr; gap: 32px; align-items: center; padding: 36px 0 28px; }
+    .hero img { width: 100%; border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,.2); }
+    .hero h1 { margin: 0 0 6px; font-size: 34px; line-height: 1.15; }
+    .hero h1 .id { color: var(--red); }
+    .hero .tag { font-style: italic; color: var(--muted); margin: 0 0 14px; }
+    .hero p { margin: 0 0 18px; font-size: 17px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn { display: inline-flex; flex-direction: column; text-decoration: none; border-radius: 6px; padding: 10px 18px; font-family: Helvetica, Arial, sans-serif; font-weight: 700; font-size: 16px; line-height: 1.2; border: 2px solid transparent; }
+    .btn small { font-weight: 400; font-size: 12px; opacity: .85; font-family: Georgia, serif; font-style: italic; }
+    .btn.play { background: var(--red); color: #fff; box-shadow: 0 3px 0 #a5241c; }
+    .btn.play:hover { background: #c92f26; }
+    .btn.dl { background: #fff; color: var(--blue-d); border-color: var(--blue); }
+    .btn.dl:hover { background: #eaf3fc; }
+    .btn.book { background: var(--yellow); color: var(--ink); box-shadow: 0 3px 0 #c9b62a; }
+    .btn.book:hover { background: #f2da2e; }
+    .alt { font-size: 13px; color: var(--muted); margin-top: 10px; }
+
+    .shot { margin: 8px 0 28px; }
+    .shot img { width: 100%; border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 6px 20px rgba(0,0,0,.12); }
+    .shot figcaption { font-size: 13px; color: var(--muted); font-style: italic; text-align: center; margin-top: 6px; }
+
+    section { padding: 8px 0 26px; }
+    section h2 { font-size: 22px; margin: 0 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--blue); }
+    section h2 .n { color: var(--red); margin-right: 8px; }
+    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+    .gallery { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .gallery img { width: 100%; height: 190px; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); background: #fff; }
+    .groups { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    .groups li { background: var(--panel); border-left: 6px solid var(--blue); padding: 8px 12px; border-radius: 0 6px 6px 0; }
+    .groups li.A { border-color: var(--blue); } .groups li.B { border-color: var(--red); } .groups li.C { border-color: #2e9e3a; } .groups li.D { border-color: #e8a23a; } .groups li.E { border-color: #7a4fb0; }
+    .groups b { font-family: Helvetica, Arial, sans-serif; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; }
+    code, kbd { font-family: Menlo, Consolas, monospace; font-size: 13px; background: #efe9da; padding: 1px 5px; border-radius: 3px; }
+    pre { background: #efe9da; padding: 10px 12px; border-radius: 6px; overflow-x: auto; font-size: 13px; }
+    .books { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .books .panel h3 { margin: 0 0 4px; font-size: 16px; }
+    .books .panel p { margin: 0 0 8px; font-size: 14px; color: var(--muted); }
+    .note { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 12px; }
+    footer { font-size: 13px; color: var(--muted); padding: 16px 20px 28px; border-top: 1px solid var(--line); background: #fff; text-align: center; font-style: italic; }
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; gap: 18px; padding-top: 22px; }
+      .hero img { max-width: 260px; }
+      .cols, .books { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
+      .gallery img { height: auto; }
+      header .sans.sub { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span class="ee">EE</span><span><div class="philips">PHILIPS</div><div class="title" data-t="appTitle"></div></span></div>
+    <div class="spacer"></div>
+    <a class="gh" href="https://github.com/Mjrovai/EE20-Simulator">GitHub</a>
+    <button id="btnLang"></button>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <img src="images/EE20.jpg" alt="Philips Electronic Engineer EE 20 kit">
+      <div>
+        <h1><span class="id">EE 20</span> <span data-t="h1"></span></h1>
+        <p class="tag" data-t="tag"></p>
+        <p data-t="intro"></p>
+        <div class="actions">
+          <a class="btn play" href="sim/"><span data-t="play"></span><small data-t="playSub"></small></a>
+          <a class="btn dl" href="download/EE20-Simulator-offline.zip"><span data-t="download"></span><small data-t="downloadSub"></small></a>
+          <a class="btn book" id="bookBtn"><span data-t="book"></span><small id="bookSub"></small></a>
+        </div>
+        <div class="alt"><span data-t="altBook"></span> <a id="bookAlt"></a></div>
+      </div>
+    </div>
+
+    <figure class="shot">
+      <img src="images/ee20-simulator.png" alt="EE 20 Simulator screenshot">
+      <figcaption data-t="shotCap"></figcaption>
+    </figure>
+
+    <section>
+      <h2><span class="n">1</span><span data-t="kitH"></span></h2>
+      <div class="cols">
+        <div>
+          <p data-t="kit1"></p>
+          <p data-t="kit2"></p>
+        </div>
+        <div class="gallery">
+          <img src="images/ee20-kit-boxed.jpg" alt="EE 20 kit, complete in its box">
+          <img src="images/philips-ee-ad-01.jpg" alt="Philips Electronic Engineer advertisement">
+          <img src="images/philips-ee-ad-02.jpg" alt="Philips Electronic Engineer advertisement">
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">2</span><span data-t="simH"></span></h2>
+      <p data-t="sim1"></p>
+      <ul class="groups">
+        <li class="A"><b>A · <span data-t="gA"></span></b> — <span data-t="gAd"></span></li>
+        <li class="B"><b>B · <span data-t="gB"></span></b> — <span data-t="gBd"></span></li>
+        <li class="C"><b>C · <span data-t="gC"></span></b> — <span data-t="gCd"></span></li>
+        <li class="D"><b>D · <span data-t="gD"></span></b> — <span data-t="gDd"></span></li>
+        <li class="E"><b>E · <span data-t="gE"></span></b> — <span data-t="gEd"></span></li>
+      </ul>
+      <p data-t="sim2" style="margin-top:14px"></p>
+      <figure class="shot">
+        <img src="images/simu-real.jpg" alt="Simulated mounting board next to the real kit">
+        <figcaption data-t="realCap"></figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2><span class="n">3</span><span data-t="offH"></span></h2>
+      <div class="cols">
+        <div class="panel">
+          <p data-t="off1"></p>
+          <ol>
+            <li data-t="offS1"></li>
+            <li data-t="offS2"></li>
+            <li data-t="offS3"></li>
+          </ol>
+          <p data-t="off2"></p>
+<pre>cd EE20-Simulator/sim
+python3 -m http.server 8080</pre>
+        </div>
+        <div class="panel">
+          <h3 style="margin:0 0 6px" data-t="tipsH"></h3>
+          <ul>
+            <li data-t="tip1"></li>
+            <li data-t="tip2"></li>
+            <li data-t="tip3"></li>
+            <li data-t="tip4"></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">4</span><span data-t="bookH"></span></h2>
+      <p data-t="book1"></p>
+      <div class="books">
+        <div class="panel">
+          <h3>Philips Electronic Engineer EE 8 / EE 20 — English</h3>
+          <p data-t="bookEn"></p>
+          <a class="btn book" href="books/EE20-colour-en.pdf">EE20-colour-en.pdf <small>PDF · 54 MB · 76 pp.</small></a>
+        </div>
+        <div class="panel">
+          <h3>Philips Engenheiro Eletrônico EE 8 / EE 20 — Português</h3>
+          <p data-t="bookPt"></p>
+          <a class="btn book" href="books/EE20-br.pdf">EE20-br.pdf <small>PDF · 28 MB · 78 pp.</small></a>
+        </div>
+      </div>
+      <p class="note" data-t="bookNote"></p>
+    </section>
+  </main>
+
+  <footer>
+    <span data-t="madeBy"></span> <a href="https://mjrobot.org">MJRoBot.org</a> ·
+    <a href="https://github.com/Mjrovai/EE20-Simulator">GitHub</a> ·
+    <span data-t="license"></span>
+  </footer>
+
+  <script>
+    const S = {
+      appTitle: { en: 'Electronic Engineer', pt: 'Engenheiro Eletrônico' },
+      language: { en: 'Português', pt: 'English' },
+      h1: { en: 'Simulator', pt: 'Simulador' },
+      tag: { en: 'Philips Electronic Engineer · all-transistor assembly kit · 22 circuits · no soldering · 1966', pt: 'Philips Engenheiro Eletrônico · conjunto de montagem transistorizado · 22 circuitos · sem solda · 1966' },
+      intro: { en: 'Build and operate the 22 circuits of the classic Philips EE 8 / EE 20 kit in your browser: amplifiers, Morse trainers, radio receivers, alarms and measuring instruments, with sound, a live circuit diagram and the instruction book at hand. Free, bilingual (English / Português-BR), nothing to install.', pt: 'Monte e opere no navegador os 22 circuitos do clássico conjunto Philips EE 8 / EE 20: amplificadores, treinadores de Morse, receptores de rádio, alarmes e instrumentos de medida, com som, diagrama de circuito ao vivo e o livro de instruções à mão. Grátis, bilíngue (inglês / português-BR), sem instalar nada.' },
+      play: { en: '▶ Play online', pt: '▶ Jogar online' },
+      playSub: { en: 'runs in the browser', pt: 'roda no navegador' },
+      download: { en: '⬇ Download for offline use', pt: '⬇ Baixar para usar offline' },
+      downloadSub: { en: 'zip · about 80 KB · no install', pt: 'zip · cerca de 80 KB · sem instalação' },
+      book: { en: '📖 Instruction book (PDF)', pt: '📖 Livro de instruções (PDF)' },
+      bookSubEn: { en: 'English edition · 54 MB', pt: 'edição em inglês · 54 MB' },
+      bookSubPt: { en: 'Portuguese edition · 28 MB', pt: 'edição em português · 28 MB' },
+      altBook: { en: 'Also available:', pt: 'Também disponível:' },
+      altBookEn: { en: 'the English edition (54 MB)', pt: 'a edição em inglês (54 MB)' },
+      altBookPt: { en: 'the Portuguese edition (28 MB)', pt: 'a edição em português (28 MB)' },
+      shotCap: { en: 'Circuit C3 (three-transistor receiver): mounting board, instruments and the station list.', pt: 'Circuito C3 (receptor de três transistores): placa de montagem, instrumentos e a lista de estações.' },
+      kitH: { en: 'The kit', pt: 'O conjunto' },
+      kit1: { en: 'In the 1960s Philips sold the Electronic Engineer series of educational kits. The EE 20 (and its smaller sibling, the EE 8) came with a pegboard, spring-clip wiring cards, germanium transistors AF 116 and AC 126, a light-dependent resistor, a loudspeaker, an earphone and a 78-page book describing 22 circuits to build without soldering.', pt: 'Nos anos 1960 a Philips vendia a série de conjuntos educativos Engenheiro Eletrônico. O EE 20 (e o irmão menor, EE 8) vinha com uma placa perfurada, cartelas de fiação com molas, transistores de germânio AF 116 e AC 126, um LDR, um alto-falante, um fone de ouvido e um livro de 78 páginas descrevendo 22 circuitos para montar sem solda.' },
+      kit2: { en: 'The kit was sold in Brazil as the Philips Engenheiro Eletrônico, with a Portuguese edition of the book. Many of us built our first amplifier, radio and burglar alarm on that brown board. This simulator recreates that experience, circuit by circuit, following the original book.', pt: 'No Brasil o conjunto foi vendido como Philips Engenheiro Eletrônico, com edição do livro em português. Muitos de nós montamos o primeiro amplificador, o primeiro rádio e o primeiro alarme naquela placa marrom. Este simulador recria essa experiência, circuito por circuito, seguindo o livro original.' },
+      simH: { en: 'What is simulated', pt: 'O que é simulado' },
+      sim1: { en: 'Each of the 22 circuits has four tabs: the mounting board with photo-style parts (click any part to inspect it), the blue Philips-style circuit diagram that lights up while the circuit runs, the adapted instruction-book text, and the parts list with resistor colour codes. Instruments include lamp, loudspeakers, earphone, battery gauge, oscilloscope and stopwatch.', pt: 'Cada um dos 22 circuitos tem quatro abas: a placa de montagem com peças em estilo fotográfico (clique em qualquer peça para inspecioná-la), o diagrama azul no estilo Philips que acende enquanto o circuito funciona, o texto adaptado do livro de instruções e a lista de peças com o código de cores dos resistores. Os instrumentos incluem lâmpada, alto-falantes, fone, medidor de bateria, osciloscópio e cronômetro.' },
+      gA: { en: 'Electro-acoustics', pt: 'Eletroacústica' },
+      gAd: { en: 'earphone and gramophone amplifiers, push-pull, Bi-Ampli, electronic organ with 8 keys; record player, microphone and acoustic feedback howl.', pt: 'amplificadores para fone e toca-discos, push-pull, Bi-Ampli, órgão eletrônico de 8 teclas; toca-discos, microfone e microfonia.' },
+      gB: { en: 'Telecommunications', pt: 'Telecomunicações' },
+      gBd: { en: 'Morse trainers with a decoder of your own keying and an automatic "friend", two-way intercom, telephone amplifier with pick-up coil.', pt: 'treinadores de Morse com decodificador da sua manipulação e um "amigo" automático, intercomunicador, amplificador telefônico com bobina captadora.' },
+      gC: { en: 'Radio', pt: 'Rádio' },
+      gCd: { en: 'one-, two- and three-transistor medium-wave receivers, eight simulated transmitters, tuning, static, ferrite-rod direction finding, sunrise alarm.', pt: 'receptores de ondas médias de um, dois e três transistores, oito emissoras simuladas, sintonia, estática, radiogoniometria com a barra de ferrite, despertador solar.' },
+      gD: { en: 'Signaling', pt: 'Sinalização' },
+      gDd: { en: 'tell-tale light, flashing beacon, acoustic relay, pilfering and burglar alarms with the LDR, latching lamps and the sliding switch.', pt: 'luz-piloto, farol intermitente, relé acústico, alarmes contra furto e contra ladrão com o LDR, lâmpadas com retenção e a chave deslizante.' },
+      gE: { en: 'Measuring & control', pt: 'Medição e controle' },
+      gEd: { en: 'night light, moisture indicator, time switch with stopwatch, measuring bridge with a mystery component.', pt: 'luz noturna, indicador de umidade, temporizador com cronômetro, ponte de medição com um componente misterioso.' },
+      sim2: { en: 'Fault-finding practice hides one assembly mistake (reversed transistor, wrong resistor, loose wire, flat batteries…) and the set misbehaves the way the book describes; inspect the parts to find and repair it. The simulation is behavioural (RC time constants, LDR light model, divider thresholds, transistor states), not a SPICE solver; all sound is synthesized with the Web Audio API.', pt: 'O treino de localização de defeitos esconde um erro de montagem (transistor invertido, resistor errado, fio solto, pilhas gastas…) e o aparelho falha do jeito que o livro descreve; inspecione as peças para achar e consertar. A simulação é comportamental (constantes de tempo RC, modelo de luz do LDR, limiares de divisores, estados dos transistores), não um solucionador SPICE; todo o som é sintetizado com a Web Audio API.' },
+      realCap: { en: 'Simulated mounting board (left) next to the real EE 20 wiring card.', pt: 'Placa de montagem simulada (esquerda) ao lado da cartela real do EE 20.' },
+      offH: { en: 'Play offline', pt: 'Usar offline' },
+      off1: { en: 'The simulator is plain HTML, CSS and JavaScript. No build step, no dependencies, no internet connection needed once downloaded.', pt: 'O simulador é HTML, CSS e JavaScript puros. Sem compilação, sem dependências, sem precisar de internet depois de baixado.' },
+      offS1: { en: 'Download the zip with the button above and unpack it.', pt: 'Baixe o zip com o botão acima e descompacte.' },
+      offS2: { en: 'Open sim/index.html in Chrome, Edge, Firefox or Safari.', pt: 'Abra sim/index.html no Chrome, Edge, Firefox ou Safari.' },
+      offS3: { en: 'Click once on the page to enable sound (browser autoplay rule).', pt: 'Clique uma vez na página para liberar o som (regra de autoplay dos navegadores).' },
+      off2: { en: 'If your browser blocks scripts on local files, serve the folder with any static web server and open http://localhost:8080/:', pt: 'Se o navegador bloquear scripts em arquivos locais, sirva a pasta com qualquer servidor web estático e abra http://localhost:8080/:' },
+      tipsH: { en: 'Tips', pt: 'Dicas' },
+      tip1: { en: 'The language button (top right) switches EN ⇄ PT; the choice, the last circuit and the last tab are remembered.', pt: 'O botão de idioma (canto superior direito) alterna EN ⇄ PT; a escolha, o último circuito e a última aba ficam gravados.' },
+      tip2: { en: 'Keyboard: Space = Morse/alarm key · R = reset · S = sliding switch · 1–8 or A S D F G H J K = organ keys · ← → = potentiometer.', pt: 'Teclado: Espaço = tecla Morse/alarme · R = rearme · S = chave deslizante · 1–8 ou A S D F G H J K = teclas do órgão · ← → = potenciômetro.' },
+      tip3: { en: 'The microphone is optional and is only requested when you tick "Use my computer microphone".', pt: 'O microfone é opcional e só é pedido quando você marca "Usar o microfone do computador".' },
+      tip4: { en: 'Batteries slowly run down, as in the real set; click them to fit fresh ones.', pt: 'As pilhas se gastam aos poucos, como no aparelho real; clique nelas para colocar pilhas novas.' },
+      bookH: { en: 'The instruction book', pt: 'O livro de instruções' },
+      book1: { en: 'The simulator follows the original Philips instruction book (1966). Both editions are available here as scanned PDFs so you can read the theory, the assembly notes and the applications the way they were written.', pt: 'O simulador segue o livro de instruções original da Philips (1966). As duas edições estão disponíveis aqui em PDF digitalizado, para você ler a teoria, as notas de montagem e as aplicações como foram escritas.' },
+      bookEn: { en: 'Colour scan of the English edition, "Electronic Engineer EE 8 / EE 20".', pt: 'Digitalização em cores da edição inglesa, "Electronic Engineer EE 8 / EE 20".' },
+      bookPt: { en: 'Scan of the Brazilian edition, "Engenheiro Eletrônico EE 8 / EE 20".', pt: 'Digitalização da edição brasileira, "Engenheiro Eletrônico EE 8 / EE 20".' },
+      bookNote: { en: 'The instruction books are © Philips. They are shared here for historical and educational purposes only, for the benefit of collectors, teachers and hobbyists of a kit that has been out of production for decades.', pt: 'Os livros de instruções são © Philips. São compartilhados aqui apenas para fins históricos e educacionais, em benefício de colecionadores, professores e hobbistas de um conjunto fora de produção há décadas.' },
+      madeBy: { en: 'Made by Marcelo Rovai ·', pt: 'Feito por Marcelo Rovai ·' },
+      license: { en: 'Simulator code under the MIT license', pt: 'Código do simulador sob licença MIT' },
+    };
+    let lang = (localStorage.getItem('ee20.lang') || (navigator.language || 'en').slice(0, 2)).toLowerCase();
+    if (lang !== 'pt') lang = 'en';
+    const t = k => (S[k] && S[k][lang] !== undefined) ? S[k][lang] : (S[k] ? S[k].en : k);
+    function render() {
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+      document.querySelectorAll('[data-t]').forEach(e => { e.textContent = t(e.getAttribute('data-t')); });
+      document.getElementById('btnLang').textContent = t('language');
+      const pt = lang === 'pt';
+      const b = document.getElementById('bookBtn');
+      b.href = pt ? 'books/EE20-br.pdf' : 'books/EE20-colour-en.pdf';
+      document.getElementById('bookSub').textContent = t(pt ? 'bookSubPt' : 'bookSubEn');
+      const a = document.getElementById('bookAlt');
+      a.href = pt ? 'books/EE20-colour-en.pdf' : 'books/EE20-br.pdf';
+      a.textContent = t(pt ? 'altBookEn' : 'altBookPt');
+      document.title = pt ? 'Simulador EE 20 — Philips Engenheiro Eletrônico (1966)' : 'EE 20 Simulator — Philips Electronic Engineer (1966)';
+    }
+    document.getElementById('btnLang').addEventListener('click', () => {
+      lang = lang === 'pt' ? 'en' : 'pt';
+      try { localStorage.setItem('ee20.lang', lang); } catch (e) {}
+      render();
+    });
+    render();
+  </script>
+</body>
+</html>
