@@ -237,7 +237,7 @@
     syncers.push(() => send.classList.toggle('on', ctl.friendSending));
     return ctlBox(t('friendSends'), h('div', { class: 'hint' }, t('yourMessage')), txt, h('div', { class: 'row' }, h('span', { class: 'val' }, t('telegraphSpeed')), wpm, send), sent, hideBtn);
   }
-  const KIT_R = [10, 47, 120, 150, 220, 270, 560, 680, 1500, 2200, 3300, 4700, 15000, 27000, 100000, 330000];
+  const KIT_R = [47, 120, 150, 180, 220, 270, 560, 680, 1500, 2200, 3300, 4700, 15000, 27000, 100000, 330000, 680000];
   const KIT_C = [2200e-12, 47e-9, 0.1e-6, 3.2e-6, 10e-6];
   function newUnknown() {
     if (ctl.unknownKind === 'R') { ctl.standardVal = 1500; const cand = KIT_R.filter(v => v >= 150 && v <= 15000); ctl.unknownVal = cand[Math.floor(Math.random() * cand.length)]; }

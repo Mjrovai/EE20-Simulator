@@ -45,7 +45,7 @@ window.EE20 = window.EE20 || {};
     D: { en: 'Diode OA 79', pt: 'Diodo OA 79' },
     LDR: { en: 'Light dependent resistor (LDR)', pt: 'Fotorresistor (LDR)' },
     LAMP: { en: 'Lamp 6 V / 0.05 A in holder', pt: 'Lâmpada 6 V / 0,05 A com soquete' },
-    POT: { en: 'Potentiometer 4.7 kΩ with on/off switch', pt: 'Potenciômetro 4,7 kΩ com interruptor' },
+    POT: { en: 'Potentiometer 10 kΩ log. with on/off switch', pt: 'Potenciômetro 10 kΩ log. com interruptor' },
     VC: { en: 'Tuning capacitor (variable)', pt: 'Capacitor variável de sintonia' },
     SLIDE: { en: 'Sliding switch', pt: 'Chave deslizante' },
     KEY: { en: 'Key (spring contact)', pt: 'Tecla (contato de mola)' },
