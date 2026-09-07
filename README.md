@@ -33,7 +33,7 @@ The language button (top right) switches EN ⇄ PT; the choice, the last circuit
 
 ## What is simulated · O que é simulado
 
-| Group | Circuits | Behaviur |
+| Group | Circuits | Behavior |
 |---|---|---|
 | A · Electro-acoustics | A1 earphone amplifier, A2 mic/gramophone amplifier, A3 push-pull, A4 Bi-Ampli, A5 electronic organ | Record player with public-domain tunes and vinyl crackle; microphone (real or simulated voice) with acoustic-feedback howl when the mic is near the loudspeaker; bass/treble split on two loudspeakers; 8-key organ (multivibrator tone, tune it with the potentiometer, resistor tolerance makes each build slightly different) |
 | B · Telecommunications | B1/B2 Morse trainers, B3 intercom, B4 telephone amplifier | Morse key (mouse or Space) with a decoder of your own keying; an automatic “friend” sends texts at a chosen speed; two-way switch; intercom talk/listen with a remote room (friend, baby); pick-up coil hearing a telephone, bird-song, whisper, watch ticking |
@@ -60,7 +60,7 @@ Keyboard: `Space` = Morse/alarm key · `R` = reset key · `S` = sliding switch �
 * The simulation is behavioral (RC time constants, LDR resistance versus light, divider thresholds, transistor on/off states), not a SPICE solver. Tones are synthesized with the Web Audio API; loudspeaker and earphone have their own frequency coloring.
 * Transmitters, telephone voices, bird-song and the “friend” are all synthetic; music consists of public-domain melodies.
 
-![](./images/simu-real.png)
+![](./images/simu-real.jpg)
 
 ## Files
 
